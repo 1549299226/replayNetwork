@@ -19,7 +19,7 @@ void sigHander(int sigNum)
 }
 
 #define BUFFER_SIZE 128
-#define SERVER_SIZE 10001
+#define SERVER_SIZE 9999
 #define MAX_LISTEN 128
 #define LOCAL_IPADDRESS "127.0.0.1"
 int main()
@@ -53,7 +53,7 @@ int main()
     localAddress.sin_addr = INADDR_ANY;//0x00000000
 #else
 
-    inet_pton(AF_INET, LOCAL_IPADDRESS, &(localAddress.sin_addr.s_addr));
+    // inet_pton(AF_INET, LOCAL_IPADDRESS, &(localAddress.sin_addr.s_addr));
 #endif
     //端口需要转成大端
     localAddress.sin_port = htons(SERVER_SIZE);
@@ -116,7 +116,7 @@ int main()
             sleep(3);
             
             strncpy(replyBytes, "一起加油", sizeof(replyBytes) - 1);
-            write(acceptfd, "666", strlen("666") + 1);
+            write(acceptfd, replyBytes, strlen(replyBytes) + 1);
             
 
         }
@@ -124,7 +124,7 @@ int main()
     }
     
     //关闭文件描述符
-    close(acceptfd);
+    
     close(sockfd);
     
     return 0;

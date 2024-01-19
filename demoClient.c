@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <signal.h>
 #include <arpa/inet.h>
-#define SERVER_SIZE 10001
+#define SERVER_SIZE 9999
 #define SERVER_IP "172.23.179.110" 
 #define BUFFER_SIZE 128
 int main()
@@ -46,11 +46,20 @@ int main()
 
     while (1)
     {
+#if 0
         strncpy(buffer, "加油254", sizeof(buffer) - 1);
         write(sockfd, buffer, sizeof(buffer));
 
         read(sockfd, recvBuffer, sizeof(recvBuffer) - 1);
         printf("recv:%s\n",recvBuffer);
+#else
+        int num = 0x121345678;
+        
+        // printf("num");
+
+        write(sockfd, (void*), sizeof(num));
+        sleep(5);
+#endif
     }
     
 
